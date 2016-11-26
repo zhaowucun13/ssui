@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+
+HTML中的setCapture和releaseCapture使用介绍
+
+setCapture函数的作用就是将后续的mouse事件都发送给这个对象，releaseCapture就是将鼠标事件还回去，由 document、window、object之类的自行来处理。这样就保证了在拖动的过程中，不会由于经过了其它的元素而受到干扰
+
+另外，还有一个很重 要的事情是，在Win32上，mouse move的事件不是一个连续的，也就是说，并不是我们每次移动1px的鼠标指针，就会发生一个mousemove，windows会周期性检查mouse 的位置变化来产生mousemove的事件。
+所以，如果是一个很小的页面对象，比如一个直径5px的圆点，如果没有setCapture和 releaseCapture，那么在鼠标按住之后，快速的移动鼠标，就有可能鼠标移动走了，但是小圆点还在原地，就是因为下一次的mousemove事 件已经不再发给这个圆点对象了。
+
+web开发和windows开发最大的区别就是windows开发是有状态的，而web开发是无状态的，在windows中，一切操作都可以由程序来控制 ，除非强制执行ctrl+alt+del；但web操作就不一样了，即使执行很重要的操作，用户一点击浏览器关闭按钮，就将前面操作成果化为乌有.尽管可以在onunload事件中加些代码，让用户可以选择是否退出，但不能从根本上解决问题!
+
+前几天，从网上看到setCapture方法，了解了一下，大体是这样的意思，当在IE文档某个区域中使用了这个方法，并且写了onclick或者 onmouse***等有关的鼠标事件方法，那么它就会监视相应的鼠标操作，即使你的鼠标移出了IE，它也一样能捕获到.如果你在某div中的 onclick事件中写了一个alert命令，这时，你点击的关闭按钮，它也一样会弹出alert窗口.releaseCapture与 setCapture方法相反，释放鼠标监控.
+
+利用这个特性，我们可以延缓IE的关闭窗口等破坏性操作，将一些重要的操作能够在破坏性操作执行之前得到处理.
+有一点遗憾:setCapture和releaseCapture 不支持键盘事件.只对onmousedown， onmouseup， onmousemove， onclick， ondblclick， onmouseover， onmouseout这样的鼠标事件起作用.
+
+下面是一个小例子，若我们要对divMain这个div元素里面的内容进行保护:
+1.对divMain执行setCapture方法:
+document.getElementById("divMain").setCapture()；
+2.加入一按钮btnChange，可以进行setCapture和releaseCapture切换，定义一全局变量；
+var isFreeze = true；
+3.在btnChange的onclick事件中，加入下列代码:
+复制代码 代码如下:
+
+function change_capture(obj) {
+isFreeze = !isFreeze;
+if(isFreeze) {
+obj.value = "releaseCapture";
+document.getElementById("divMain").setCapture();
+} else {
+obj.value = "setCapture";
+alert('保存！'); //可以执行重要操作
+document.getElementById("divMain").releaseCapture();
+}
+}
+
+divMain的onclick事件中，加入下列代码:
+复制代码 代码如下:
+
+function click_func()
+{
+if(event.srcElement.id == "divMain")
+{
+alert("处理中...")； //常规操作
+document.getElementById("divMain").setCapture()；
+}
+else
+{
+if(isFreeze && event.srcElement.id != "btnChange")
+{
+alert('未执行releaseCapture，不能点击')；
+document.getElementById("divMain").setCapture()；
+}
+}
+}
+
+对ALT+F4进行处理，在body的onkeydown事件中加入下列代码:
+复制代码 代码如下:
+
+function keydown_func()
+{
+if (event.keyCode==115 && event.altKey) //ALT+F4
+{
+if(isFreeze)
+{
+alert('保存！')； //可以执行重要操作
+}
+//window.showModelessDialog("about:blank"，""，"dialogWidth:1px；dialogheight:1px")；
+//return false；
+}
+document.getElementById("divMain").setCapture()；
+}
+
+完整代码如下:
+复制代码 代码如下:
+
+
+
+关于javascript中call和apply函数的应用
+我们经常在javascipt中的面向对象应用中遇到call和apply函数；有时会被搞糊涂。其实它们可以改变函数或对象中的this保留字的值；this保留字的默认值就是这个类本身。举例说明：
+复制代码 代码如下:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html； charset=gb2312" />
+<script language="javascript">
+test = {
+value: 'default'，exec: function() {
+alert(this.value)；
+}
+}
+function hhh(obj) {
+test.exec()；test.exec.apply(obj)；
+}
+</script>
+</head>
+<body>
+<input type="button" onclick="hhh(this)；" value="test" />
+</body>
+</html>
+
+运行以上的页面就很快明白了.
+call和apply函数可以处理匿名函数
+关于类的初始化应用如下：
+复制代码 代码如下:
+
+Person = function() {
+this.Init.apply(this, arguments);
+};
+Person.prototype = {
+first: null,
+last: null,
+Init: function(first, last) {
+this.first = first;
+this.last = last;
+},
+fullName: function() {
+return this.first + ' ' + this.last;
+},
+fullNameReversed: function() {
+return this.last + ', ' + this.first;
+}
+};
+var s = new Person2('creese', 'yang');
+alert(s.fullName());
+alert(s.fullNameReversed());
+
+call和apply函数可以赋值函数内容（带匿名参数；但不触发）
+关于函数绑定事件应用如下：
+复制代码 代码如下:
+
+Function.prototype.BindForEvent = function() {
+var __m = this， object = arguments[0]， args = new Array()；
+for(var i = 1； i < arguments.length； i++){
+args.push(arguments[i])；
+}
+return function(event) {
+return __m.apply(object， [( event || window.event)].concat(args))；
+}
+}
+
+call和apply函数关于函数绑定参数应用如下：
+复制代码 代码如下:
+
+Function.prototype.Bind = function() {
+var __m = this， object = arguments[0]， args = new Array()；
+for(var i = 1； i < arguments.length； i++){
+args.push(arguments[i])；
+}
+return function() {
+return __m.apply(object， args)；
+}
+}
+
+call和apply函数功能是一样的；就是参数格式不同；fun.call(obj， arguments)；apply的arguments是数组形式；call则是单数形式。
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE>
+<html>
+<head>
+    <style type="text/css">
+        
+        #main div{
+            position:absolute;
+            width:220px;
+            height:150px;
+            border:1px solid #999;
+        }
+    </style>
+    
+    
+    <script type="text/javascript">
+        var a;
+        document.onmouseup=function(){
+            if(!a)return;
+            document.all?a.releaseCapture():window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);
+            a="";
+        };
+
+        document.onmousemove=function (d){
+            if(!a) return;
+            if(!d) d=event;
+            a.style.left=(d.clientX-b)+"px";a.style.top=(d.clientY-c)+"px";
+        };
+
+        function move(o,e){
+            a=o;
+            document.all?a.setCapture():window.captureEvents(Event.MOUSEMOVE);
+            b=e.clientX-parseInt(a.style.left);
+            c=e.clientY-parseInt(a.style.top);
+            o.style.zIndex=getMaxIndex()+1;
+        }
+
+        function $(id){
+            return document.getElementById(id);
+        }
+        function getMaxIndex(){
+            var index=0;
+            var ds=$('main').getElementsByTagName('div');
+            var l=$('main').getElementsByTagName('div').length;
+            for (i=0;i<l;i++)
+            {
+                if (ds[i].style.zIndex>index) {
+                    index=ds[i].style.zIndex;
+                };
+            }
+            return index;
+        }
+
+    </script>
+</head>
+<body>
+<div id="main">
+    <div style="left:100px;top:100px;background:#fc9;" onmousedown="move(this,event)">1</div>
+    <div style="left:400px;top:100px;background:#9cf;" onmousedown="move(this,event)">2</div>
+    <div style="left:700px;top:100px;background:#f9c;" onmousedown="move(this,event)">3</div>
+    <div style="left:100px;top:300px;background:#9fc;" onmousedown="move(this,event)">4</div>
+    <div style="left:400px;top:300px;background:#c9f;" onmousedown="move(this,event)">5</div>
+    <div style="left:700px;top:300px;background:#cf9;" onmousedown="move(this,event)">6</div>
+</div>
+</body>
+</html>

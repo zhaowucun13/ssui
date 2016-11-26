@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        /*.demoBox{*/
+            /*width: 1000px;*/
+            /*height: 450px;*/
+            /*background-color: gray;*/
+        /*}*/
+        .demos{
+            width: 40px;
+            height: 40px;
+            background-color: maroon;
+        }
+        .demox{
+            width: 40px;
+            height: 40px;
+            background-color: red;
+        }
+        .demosjx{
+            width: 0px;
+            height: 0px;
+            border: 25px solid;
+            border-color: #fff;
+            border-bottom: 43px solid gray;
+        }
+    </style>
+</head>
+<body>
+<div class="demoBox" id="demoBox">
+    <div class="demos" id="demos"></div>
+
+    <div class="demox" id="demox"></div>
+
+
+    <!--<div class="demosjx" id="demosjx"></div>-->
+
+</div>
+<script>
+    window.onload=function(){
+        var sxj = {
+            getElmById:function(element){
+                var result = document.getElementById(element);
+                return result;
+            },
+            touch:function(temp){
+                var dom = temp;
+                dom = this.getElmById(temp);
+                /*1.创建变量描述起始的x值*/
+                var startX=0;
+                /*2.创建变量描述起始的Y值*/
+                var startY=0;
+                /*3.创建变量描述偏移的X值*/
+                var moveX=0;
+                /*4.创建变量描述偏移的Y值*/
+                var moveY=0;
+                /*5.创建变量存储偏移的X值*/
+                var distanceX=0;
+                /*6.创建变量存储偏移的Y值*/
+                var distanceY=0;
+
+                var currentX=0;
+                var currentY=0;
+
+                /*添加触摸开始事件：一次触摸只会触摸一次*/
+                dom.addEventListener("touchstart",function(e){
+                    /*获取手指*/
+                    var touch= e.touches[0];
+                    startX=touch.clientX;
+                    startY=touch.clientY;
+                    console.log("start"+e);
+                });
+                var demoBox = document.getElementById("demoBox");
+                /*添加触摸滑动事件：滑动事件是一个持续触发的事件*/
+                window.addEventListener("touchmove",function(e){
+                    var touch= e.touches[0];
+                    moveX=touch.clientX;
+                    moveY=touch.clientY;
+                    /*计算当前这一次的偏移值*/
+                    distanceX=moveX-startX;
+                    distanceY=moveY-startY;
+                    console.log("move"+e);
+                    /*设置偏移*/
+                    dom.style.transform="translate("+(currentX+distanceX)+"px,"+(currentY+distanceY)+"px)";
+                });
+                /*添加触摸结束事件：一次离开触发一次*/
+                dom.addEventListener("touchend",function(e){
+                    currentX+=distanceX;
+                    currentY+=distanceY;
+                    console.log("end"+e);
+                });
+            }
+        }
+        sxj.touch("demos");
+        sxj.touch("demox");
+    }
+</script>
+</body>
+</html>

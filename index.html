@@ -3,290 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <style type="text/css">
-        .container {
-            margin: 100px auto;
-            width: 850px;
-            border: 1px solid #dad8d8;
-
-            /*height: 100%;*/
-        }
-        .container h2 {
-            border-top: 3px dotted #abc;
-            margin-top: 50px;
-        }
-        .songslist-main, .songslist-header {
-            position: relative;
-            width: 100%;
-            text-align: center;
-        }
-        .songslist-header {
-            height: 30px;
-            border-bottom: 1px solid #dad8d8;
-            line-height: 30px;
-            background-color: #def;
-        }
-
-        .songslist-name {
-            position: absolute;
-            width: 40%;
-            height: 100%;
-            border-right: 1px solid #dad8d8;
-        }
-        .songslist-singer {
-            position: absolute;
-            left: 40%;
-            width: 50%;
-            height: 100%;
-            border-right: 1px solid #dad8d8;
-        }
-        .songslist-option {
-            position: absolute;
-            left: 90%;
-            width: 10%;
-            height: 100%;
-        }
-
-        .songslist-main {
-            background-color: #fff;
-            height: 100%;
-        }
-        .songslist-main .songslist-name{
-            height: 50px;
-            line-height: 50px;
-            border: 0;
-        }
-        .songslist-main .songslist-singer{
-            height: 50px;
-            line-height: 50px;
-            border: 0;
-        }
-        .songslist-single {
-            height: 50px;
-        }
-    </style>
 </head>
 <body>
-<div class="container">
-    <div class="songslist-op">
-        <label for="txtAddSName">歌曲名:</label><input type="text" id="txtAddSName" />
-        <label for="txtAddSinger">歌手:</label><input type="text" id="txtAddSinger" />
-        <button id="btnAdd">添加</button>
-        <button id="btnDel">删除</button>
-        <button id="btnUpdate">修改</button>
-    </div>
+<canvas id="cv"></canvas>
 
-    <h2>全部歌曲</h2>
-    <div class="songslist-header">
-        <div class="songslist-name">歌曲名称</div>
-        <div class="songslist-singer">歌手</div>
-        <div class="songslist-option">操作</div>
-    </div>
-    <div class="songslist-main" id="c">
-        <div class="songslist-single">
-            <div class="songslist-name">歌曲名称</div>
-            <div class="songslist-singer">歌手</div>
-        </div>
-    </div>
+<script src="Play.js"></script>
+<script src="tlfBird.js"></script>
+<script src="tlfSky.js"></script>
+<script src="tlfPipe.js"></script>
+<script src="tlfLand.js"></script>
+<script src="tlfGame.js"></script>
 
+<script>
+    var cv = document.querySelector("#cv");
+    cv.width = 800;
+    cv.height = 600;
+    cv.style.border = "1px solid red";
+    var ctx = cv.getContext("2d");
+    // enjoy！--------------------------------------------
 
-    <h2>
-        <span>蓝瘦-喜欢的歌曲</span>
-        <button id="btnLS">订阅</button>
-    </h2>
-    <div class="songslist-header">
-        <div class="songslist-name">歌曲名称</div>
-        <div class="songslist-singer">歌手</div>
-        <div class="songslist-option">操作</div>
-    </div>
-    <div class="songslist-main" id="c1">
-    </div>
+    var game = new Play.Game({
+       ctx:ctx
+    });
+    game.start();
 
-    <h2>
-        <span>香菇-喜欢的歌曲</span>
-        <button id="btnXG">订阅</button>
-    </h2>
-    <div class="songslist-header">
-        <div class="songslist-name">歌曲名称</div>
-        <div class="songslist-singer">歌手</div>
-        <div class="songslist-option">操作</div>
-    </div>
-    <div class="songslist-main" id="c2">
-    </div>
-
-
-</div>
-
-<script type="text/javascript">
-
-    //歌曲管理者
-    var SongsManager = function(list, id) {
-        this.songsList = list || [];
-        // 指定歌曲列表的id
-        this.id = id;
-        // 调用渲染页面结构的 render 方法
-        this.render();
-    };
-    //歌曲增删改查方法
-    SongsManager.prototype = {
-        addSong: function(songInfo) {
-            this.songsList.push(songInfo);
-
-            this.render();
-        },
-        // 2 删除
-        deleteSong: function(name) {
-            var songsList = this.songsList;
-
-            for(var i = 0; i < songsList.length; i++) {
-                if(songsList[i].sName === name) {
-                    songsList.splice(i, 1);
-                    break;
-                }
-            }
-
-            this.render();
-        },
-        // 3 修改
-        updateSong: function(songInfo) {
-            var songsList = this.songsList;
-
-            for(var i = 0; i < songsList.length; i++) {
-                if(songsList[i].sName === songInfo.sName) {
-                    songsList[i].sSinger = songInfo.sSinger;
-                    break;
-                }
-            }
-            this.render();
-        },
-        // 4 查询
-        getSong: function(name) {
-            var songsList = this.songsList, msg = "";
-
-            for(var i = 0; i < songsList.length; i++) {
-                if(songsList[i].sName === name) {
-                    msg = songsList[i].sSinger;
-
-                    break;
-                }
-            }
-            console.log(msg || "没有查询到歌曲信息！");
-        }
-    };
-    // 给原型对象添加一个 渲染方法 render
-    SongsManager.prototype.render = function() {
-        var songsList = this.songsList;
-        // 用来存储所有的html结构（字符串）
-        var htmlArr = [];
-        songsList.forEach(function(songInfo) {
-            // songInfo 就是每一个歌曲信息对象
-            htmlArr.push('<div class="songslist-single">');
-            htmlArr.push('	<div class="songslist-name">'+ songInfo.sName +'</div>');
-            htmlArr.push('	<div class="songslist-singer">'+ songInfo.sSinger +'</div>');
-            htmlArr.push('</div>');
-        });
-        document.querySelector( this.id ).innerHTML = htmlArr.join("");
-    };
-
-    var pubSub = {
-        //发布者存储订阅者行为的数组
-        subscriber: {
-            add:[],
-            delete:[],
-            update:[]
-        },
-        // 发布者--往数组追加订阅者行为的方法
-        addSub: function(callback, obj) {
-
-           if(callback.name=="addSong") {
-               this.subscriber["add"].push({
-                   ctx: obj,
-                   cb: callback
-               })
-           }
-           else if(callback.name == "deleteSong"){
-               this.subscriber["delete"].push({
-                   ctx: obj,
-                   cb: callback
-               })
-           }
-           else if(callback.name == "updateSong"){
-               this.subscriber["update"].push({
-                   ctx: obj,
-                   cb: callback
-               })
-           }
-        },
-
-        // 发布者--收到消息后，遍历订阅者行为数组的方法
-        pub: function(data,txt) {
-
-            if(txt=="添加"){
-                for(var i = 0; i < this.subscriber["add"].length; i++) {
-                    this.subscriber["add"][i].cb.call(this.subscriber["add"][i].ctx, data);
-                };
-            }
-            else if(txt=="删除"){
-                for(var i = 0; i < this.subscriber["delete"].length; i++) {
-                    this.subscriber["delete"][i].cb.call(this.subscriber["delete"][i].ctx, data);
-                }
-            }
-            else if(txt=="修改"){
-                for(var i = 0; i < this.subscriber["update"].length; i++) {
-                    this.subscriber["update"][i].cb.call(this.subscriber["update"][i].ctx, data);
-                }
-            }
-
-        },
-    };
-    // 使用面向对象创建实例，管理歌曲列表
-
-    var s = new SongsManager([
-        {sName: "痴心绝对", sSinger: "李圣杰"},
-        { sName: "南山南",  sSinger: "马頔"}
-    ], "#c");
-    var s1 = new SongsManager([], "#c1");
-    var s2 = new SongsManager([], "#c2");
-
-    // 发布者
-    document.querySelector("#btnAdd").onclick = function(e) {
-        var name = document.querySelector("#txtAddSName").value;
-        var singer = document.querySelector("#txtAddSinger").value;
-        s.addSong({sName: name, sSinger: singer});
-        pubSub.pub({sName: name, sSinger: singer},e.target.innerText);
-    };
-
-    document.querySelector("#btnDel").onclick = function(e){
-        var name = document.querySelector("#txtAddSName").value;
-        s.deleteSong(name);
-        pubSub.pub(name,e.target.innerText);
-    };
-
-    document.querySelector("#btnUpdate").onclick = function(e){
-        var name = document.querySelector("#txtAddSName").value;
-        var singer = document.querySelector("#txtAddSinger").value;
-        s.updateSong({sName: name, sSinger: singer});
-        pubSub.pub({sName: name, sSinger: singer},e.target.innerText);
-
-    };
-
-
-    //订阅者按钮
-    document.querySelector("#btnLS").onclick = function() {
-        pubSub.addSub(s1.addSong, s1);
-        pubSub.addSub(s1.deleteSong,s1);
-        pubSub.addSub(s1.updateSong,s1);
-        this.disabled = true;
-    };
-    document.querySelector("#btnXG").onclick = function() {
-        pubSub.addSub(s2.addSong, s2);
-        pubSub.addSub(s2.deleteSong, s2);
-        pubSub.addSub(s2.updateSong, s2);
-        this.disabled = true;
-
-    };
 
 
 </script>
 </body>
-</html>
+</html> 

@@ -1,9 +1,11 @@
-<code id="loading">
-ss.set(['loading'],function(out){
+<code id="dtPage">
+ss.set(['dtPage'],function(out){
 
-	ss.loading.show({
-		el:dom
-	})
+	ss.dtPage.render({
+		el: dom,
+		page: 10,
+		totalPage: 13
+	}); 
 	
 })
 </code>

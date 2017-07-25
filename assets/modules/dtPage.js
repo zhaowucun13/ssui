@@ -6,16 +6,13 @@
 ss.set(function(out){
     var dtPage = {
     	//表格->分页容器
-        rd_pageFn:function(self){
-            var self = self,obj = self.sourceObj,pageDom =self.domWrap['dtpWrap'];
-            //若已存在，进行移除
-            var pageSonDom = self.domWrap['productionPage'];
-            
-            pageSonDom && pageSonDom.parentNode.removeChild(pageSonDom);
+        render:function(obj){
+            var self = {domWrap:{}},obj = obj,pageDom = obj.el;
+
             if(pageDom){
                 //当前页&总页数
-                var currentPage = self.pageData.page,
-                    totalPage = self.pageData.totalPage;
+                var currentPage = obj.page,
+                    totalPage = obj.totalPage;
                 //当前页数
                 var curPage = currentPage;
                 var preStatus = curPage==1?'not-allowed':'pointer',
@@ -263,74 +260,7 @@ ss.set(function(out){
                     }
                 }
             }
-        },
-        //表格->分页->信息展示
-        rd_pageFn_info:function(self){
-            var self = self,obj = self.sourceObj,pageDom =self.domWrap['dtpWrap'];
-            self.domWrap['allCountDom'] && self.domWrap['allCountDom'].parentNode.removeChild(self.domWrap['allCountDom']);
-        	if(pageDom){
-	            //共有条数展示
-	            var allCountDom = ss.crtDom('div','allCount','',pageDom,{
-	            	cn:['position','left','top'],
-	            	cv:['absolute','0px','15px']
-	            })
-	            .appendDom(function(dom){
-	            	ss.crtDom('div','','',dom,{
-		                cn:[
-		                	'height','lineHeight','padding','border','borderRadius','display','verticalAlign'
-	                	],
-		                cv:[
-		                	'30px','30px','0px 10px','1px solid #ccc','3px','inline-block','top'
-		                ]
-	            	})
-	            	.appendDom(function(dom){
-						ss.crtDom('span','','共有：',dom,{
-		                    cn:['color','fontSize'],
-		                    cv:['#333','14px']
-		                }),
-		                ss.crtDom('span','',self['tableData']['totalRecords']||'0',dom,{
-		                    cn:['color','fontSize'],
-		                    cv:['#3089dc','14px']
-		                }),
-		                ss.crtDom('span','',' 条',dom,{
-		                    cn:['color','fontSize'],
-		                    cv:['#333','14px']
-		                })      
-	            	});
-            	});
-	            self.domWrap['allCountDom'] = allCountDom;
-        	};//存在分页
-        	//存在勾选框->开启勾选项的信息显示
-            if(obj['table']['options']['isCheckbox']){
-				ss.crtDom('div', '', '', self['domWrap']['allCountDom'], {
-					cn: [
-						'height', 'lineHeight', 'padding', 'border', 'borderRadius', 'display', 'verticalAlign', 'marginLeft'
-					],
-					cv: [
-						'30px', '30px', '0px 10px', '1px solid #ccc', '3px', 'inline-block', 'top', '10px'
-					]
-				})
-				.appendDom(function(dom) {
-					ss.crtDom('span', '', '选中：', dom, {
-						cn: ['color', 'fontSize'],
-						cv: ['#333', '14px']
-					});
-					var checkDom = ss.crtDom('span', '', '0', dom, {
-						cn: ['color', 'fontSize'],
-						cv: ['#3089dc', '14px']
-					});
-					ss.crtDom('span', '', ' 条', dom, {
-						cn: ['color', 'fontSize'],
-						cv: ['#333', '14px']
-					});
-					self['domWrap']['checkDom'] = checkDom;
-				});
-            	
-            };
-
-			
-        },//
-        
+        }
     };
     out('dtPage',dtPage)
 })

@@ -15,9 +15,11 @@ ss.set(function(out){
         constructor:DocNavMenu,
         //初始化
 		init:function(){
+            var obj = this.sourceObj;
             this.rd_contianerFn();//渲染整体容器
             var curHash = ss.getCurHash();
             curHash && this.lg_defaultValSettingFn(curHash);//存在默认值->渲染
+            ss.getDom('.ss_docmn_itemWrap_0',obj.el).querySelector('.ss_docmn_txt').click();
 		},
         //| 渲染  | 
         //渲染-整体容器
@@ -255,12 +257,12 @@ ss.set(function(out){
             var self = this,obj = self.sourceObj;
             var curDefaultVal = curHash;
             //关闭全部项
-            var firstWraps = ss.getDomAll('[ss_docmn_count="0"]');
+            var firstWraps = ss.getDomAll('[ss_docmn_count="0"]',obj.el);
             for(var i=0,iLen=firstWraps.length; i<iLen; i++){
                 ss.mdfCss(firstWraps[i],['height','35px','overflow','hidden']);
             };
             //打开默认项
-            var defalutTxtDom = ss.getDom('[ss_docmn_txt="'+curDefaultVal+'"]');
+            var defalutTxtDom = ss.getDom('[ss_docmn_txt="'+curDefaultVal+'"]',obj.el);
             self.lg_defaultValOpenFn(defalutTxtDom);
         },
         //逻辑-默认值设置-打开默认值项
@@ -293,8 +295,8 @@ ss.set(function(out){
             var self = this;
             window.location.hash = "/"+dom.querySelector('span').getAttribute("ss_docmn_txt");
             ss.mdfCss(self.domWrap['selTxtDom'],['color','#000']);
-            self.domWrap['selTxtDom'] = dom;
-            ss.mdfCss(dom,['color','#1aad16']);
+            self.domWrap['selTxtDom'] = dom.querySelector('span');
+            ss.mdfCss(dom.querySelector('span'),['color','#1aad16']);
         },
         //逻辑-其它项点击-往上重置父级
         lg_bubbleResetFn:function(dom,hVal,type){

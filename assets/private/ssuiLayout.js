@@ -49,7 +49,7 @@ ss.set(['svg'],function(out){
             }).appendDom(function(dom){
                 ss.crtDom('img','','',dom,{
                     cn:['width'],cv:['50px'],
-                    an:['src'],av:['./assets/images/logo.png']
+                    an:['src'],av:['./assets/images/logo.jpg']
                 })
             });
             //右github图标

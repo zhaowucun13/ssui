@@ -1,10 +1,7 @@
 <p align=center style="background-color: #fff;">
   <a href="#">
-    <img src="http://pukawqskq.bkt.clouddn.com/logo_u.png" alt="layui" width="360">
+    <img src="http://pukawqskq.bkt.clouddn.com/logo_u1.png" alt="layui" width="360">
   </a>
-</p>
-<p align=center>
-  ssui
 </p>
 
 ## 

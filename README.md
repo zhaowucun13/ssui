@@ -1,6 +1,6 @@
 <p align=center style="background-color: #fff;">
   <a href="#">
-    <img src="http://pukawqskq.bkt.clouddn.com/logo_3.jpg" alt="layui" width="360">
+    <img src="http://pukawqskq.bkt.clouddn.com/logo_u5.jpg alt="layui" width="360">
   </a>
 </p>
 

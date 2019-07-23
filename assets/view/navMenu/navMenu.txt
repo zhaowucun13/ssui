@@ -1,0 +1,10 @@
+<code id="navMenu">
+ss.set(['menuData'],function(out){
+
+	ss.docNavMenu({
+		el: ss.getDom('#ly_aside'),
+		data: ss.menuData
+	}); 
+
+})
+</code>

@@ -1,0 +1,13 @@
+<code id="layout">
+ss.set(['layout'],function(out){
+
+	ss.layout({
+		el:dom,
+		platformName:'ssUi管理员',
+		signOut: function(){
+			window.location.href = 'http://47.107.154.57/';
+		}
+	})
+
+})
+</code>

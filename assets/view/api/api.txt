@@ -1,0 +1,22 @@
+<code id="api">
+ss.set(['api'],function(out){
+
+	ss.api({
+		el:ss.getDom('#ss_code_api'),
+		list:[
+			{attr:'el',explain:'code模块的父级dom元素ID',type:'dom对象',defaultVal:'无，必填'},
+			{
+				attr:'id',
+				explain:'列表的数据依赖，四个属性：包括attr属性、explanin描述、type类型和defaultVal默认值',
+				type:'String字符串',
+				defaultVal:'无，必填'
+			},
+			{attr:'title',explain:'当前展示code的标题',type:'String字符串',defaultVal:'标题'},
+			{attr:'explain',explain:'对当前展示code的描述',type:'String字符串',defaultVal:'描述'}
+		],
+		title:'API',
+		explain:'Code为自身模块，通过简单的api配置，从而快速修饰你的代码，有利于展示'
+	})
+	
+})
+</code>

@@ -1,0 +1,12 @@
+<code id="code">
+ss.set(['code'],function(out){
+
+	ss.code({
+		el:ss.getDom('#ss_code'),
+		id:'code',
+		title:'基本用法',
+		explain:'功能：1、案例的展示 2、简单的标题与介绍 3、对代码的简单修饰'
+	})
+	
+})
+</code>

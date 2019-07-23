@@ -1,0 +1,23 @@
+<code id="ss_use_first">
+	----
+  ├─css  //css目录
+  ├─images  //图片资源目录（包括ico等文件）
+  ├─incoming  //第三方资源引入目录
+  ├─modules  //ssui依赖的组件库（包括主文件ssui.js）
+  │  ├─ajax
+  │  ├─api
+  │  ├─code
+  │  ├─layout
+  │  ├─router
+  │  └─ssui.js
+  ├─private  //项目私有文件
+  │  ├─menuData.js //依赖菜单
+  │  └─app.js //项目启动配置入口
+  ├─view  //项目各页面
+  │  └─code //强制：命名与hash值一致
+  │     ├─code.hmtl //路由跳转，默认加载
+  │     ├─code.js //路由跳转，默认加载
+  │     └─code.txt //配合code模块使用默认命名
+  └─index.html  //文件主html
+----
+</code>

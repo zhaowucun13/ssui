@@ -1,0 +1,9 @@
+<code id="router">
+ss.set(['router'],function(out){
+
+	ss.router({
+		defaultHash: 'router'
+	})
+
+})
+</code>

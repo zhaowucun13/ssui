@@ -1,6 +1,6 @@
 <p align=center style="background-color: #fff;">
   <a href="#">
-    <img src="http://pukawqskq.bkt.clouddn.com/logo_u5.jpg" alt="layui" width="360">
+    <img src="https://github.com/zhaowucun13/ssui/blob/master/assets/images/github_ssui_logo.jpg?raw=true" alt="layui" width="360">
   </a>
 </p>
 

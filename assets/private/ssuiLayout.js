@@ -18,7 +18,7 @@ ss.set(['svg'],function(out){
                 //头部下面内容
                 ss.crtDom('div','','',dom,{
                     cn:['position','paddingLeft','height'],
-                    cv:['relative','330px',ss.paraWrap.clh-60+'px']
+                    cv:['relative','330px','calc(100% - 60px)']
                 }).appendDom(function(dom){
                     //左侧菜单
                     ss.crtDom('div','','',dom,{

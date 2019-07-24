@@ -1,3 +1,32 @@
-<div class="ss_module">
-    loading
+<div id="ss_module">
+    <div class="conplain" style="margin-top:30px;">
+        <p>
+            与CMD规范的模块体系类似，ssui里面的每个js都要以模块的方式存在，通过简单的set|out方法来定义与抛出，然后在app.js中配置路径
+        </p>
+        <p style="color:rgb(196, 29, 127);">
+            注：view的各页面默认配置路径，无需在app.js中配置
+        </p>
+        <p style="color:rgb(196, 29, 127);">
+            注：第三方库也需配置：如jq： incoming: { jquery: '../incoming/jquery-3.3.1.min.js' }
+        </p>
+    </div>
+    <div id="ss_method_config" style="margin-top:30px;"></div>
+    <div id="ss_method_use" style="margin-top:30px;"></div>
+    <div id="ss_method_crtDom" style="margin-top:30px;"></div>
+
 </div>
+
+<style>
+    #ss_module .conplain{
+        background-color: #f2f2f2;
+        width: calc(100% - 50px);
+        padding: 10px;
+        border-radius: 5px;
+    }
+    #ss_module p{
+        font-size: 14px;
+        padding: 10px 0px;
+        color: rgb(49, 70, 89);
+    }
+
+</style>

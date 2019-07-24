@@ -1,0 +1,9 @@
+<code id="loading">
+ss.set(['loading'],function(out){
+
+	ss.loading.show({
+		el:dom
+	})
+	
+})
+</code>

@@ -40,6 +40,10 @@ ss.set(function(out){
                             {
                                 leader: 'Layout 布局',
                                 txt: 'layout',
+                            },
+                            {
+                                leader: 'Menu 菜单',
+                                txt: 'menu',
                             }
                         ]
                     },
@@ -68,27 +72,31 @@ ss.set(function(out){
                     //     ]
                     // },
                     {
-                        leader: 'Data',
+                        leader: 'DataTable',
                         txt: 'Data',
                         heeler: [
                             {
+                                leader: 'dtPage 表格分页',
+                                txt: 'dtPage',
+                            },
+                            {
+                                leader: 'dtView 表格弹窗',
+                                txt: 'dtView',
+                            },
+                            {
                                 leader: 'Table 表格',
                                 txt: 'table',
-                            },
-                            // {
-                            //     leader: 'Badge 标记',
-                            //     txt: 'badge',
-                            // }
+                            }
                         ]
                     },
                     {
                         leader: 'Notice',
                         txt: 'Notice',
                         heeler: [
-                            {
-                                leader: 'Alert 警告',
-                                txt: 'alert',
-                            },
+                            // {
+                            //     leader: 'Alert 警告',
+                            //     txt: 'alert',
+                            // },
                             {
                                 leader: 'Loading 加载',
                                 txt: 'loading',
@@ -103,26 +111,26 @@ ss.set(function(out){
                         leader: 'Others',
                         txt: 'supplier',
                         heeler: [
-                            {
-                                leader: 'Dialog 对话框',
-                                txt: 'dialog',
-                            },
-                            {
-                                leader: 'Tooltip 文字提示',
-                                txt: 'tooltip',
-                            },
-                            {
-                                leader: 'Popver 弹出框',
-                                txt: 'popver',
-                            },
-                            {
-                                leader: 'Card 卡片',
-                                txt: 'card',
-                            },
-                            {
-                                leader: 'Carousel 走马灯',
-                                txt: 'carousel',
-                            },
+                            // {
+                            //     leader: 'Dialog 对话框',
+                            //     txt: 'dialog',
+                            // },
+                            // {
+                            //     leader: 'Tooltip 文字提示',
+                            //     txt: 'tooltip',
+                            // },
+                            // {
+                            //     leader: 'Popver 弹出框',
+                            //     txt: 'popver',
+                            // },
+                            // {
+                            //     leader: 'Card 卡片',
+                            //     txt: 'card',
+                            // },
+                            // {
+                            //     leader: 'Carousel 走马灯',
+                            //     txt: 'carousel',
+                            // },
                             {
                                 leader: 'SelTool 简易版选择工具',
                                 txt: 'selTool',

@@ -1,0 +1,22 @@
+<code id="ss_module_set">
+
+ss.set(['code'],function(out){
+  
+  var module = {};
+
+  out('module',module) // 抛出一个名为module的模块
+
+})
+</code>
+
+<code id="ss_method_use">
+ss.config({
+	//私有模块(定义的模块)
+	private: {
+		'menuData': '../private/menuData.js',
+		'ssuiLayout': '../private/ssuiLayout.js',
+	}
+});
+</code>
+
+

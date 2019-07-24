@@ -1,0 +1,11 @@
+<code id="menu">
+ss.set(['menu'],function(out){
+
+	ss.menu({
+		el: dom,//挂载的dom元素
+		name: 'ssui管理平台', //系统名字
+		sourceData: menuData_cur, //资源数据
+	});
+	
+})
+</code>

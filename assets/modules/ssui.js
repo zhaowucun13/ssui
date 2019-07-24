@@ -13,7 +13,7 @@
             mdStatus:{},//模块状态
             privateMd:[
                 'router', 'docNavMenu', 'dataTable', 'dtView', 'dtPage', 'dtVagueSle' ,'code', 
-                'ajax', 'svg', 'api', 'layout', 'loading','selTool'
+                'ajax', 'svg', 'api', 'layout', 'loading','selTool', 'menu'
             ]//私有模块
         };
         this.init();//初始化

@@ -332,5 +332,5 @@ ss.set(function(out){
         },//
         
     };
-    out('dtPage',dtPage);
+    out('dtPage',dtPage)
 })

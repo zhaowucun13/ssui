@@ -12,8 +12,8 @@
             mdPaths:{},//模块地址
             mdStatus:{},//模块状态
             privateMd:[
-                'router', 'docNavMenu', 'dataTable', 'code', 
-                'ajax', 'svg', 'api', 'layout', 'loading'
+                'router', 'docNavMenu', 'dataTable', 'dtView', 'dtPage', 'dtVagueSle' ,'code', 
+                'ajax', 'svg', 'api', 'layout', 'loading','selTool'
             ]//私有模块
         };
         this.init();//初始化

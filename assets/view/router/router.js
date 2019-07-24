@@ -7,6 +7,13 @@ ss.set(['code','api'],function(out){
 		explain:'作为项目的基本配置，务必在app.js配置'
 	})
 
+	ss.code({
+		el:ss.getDom('#ss_router_example1'),
+		id:'router111',
+		title:'基本代码',
+		explain:'作为项目的基本配置，务必在app.js配置'
+	})
+
 	ss.api({
 		el:ss.getDom('#ss_router_api'),
 		list:[

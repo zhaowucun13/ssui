@@ -4,15 +4,15 @@
  @License：MIT
  */
 ss.set(['dtView', 'dtPage', 'dtVagueSle'], function(out) {
-	function ss_dataTable(obj) {
+	function DataTable(obj) {
 		this.sourceObj = obj;
 		this.domWrap = {}; //dom容器
 		this.scope = {}; //scope参数容器
 		this.tableData = {}; //存储表格数据
 		this.init(); //初始化
 	};
-	ss_dataTable.prototype = {
-		constructor: ss_dataTable,
+	DataTable.prototype = {
+		constructor: DataTable,
 		init: function() {
 			var self = this,
 				obj = self.sourceObj;
@@ -2456,6 +2456,6 @@ ss.set(['dtView', 'dtPage', 'dtVagueSle'], function(out) {
 		}
 	}
 	out('dataTable', function(obj) {
-		return new ss_dataTable(obj);
+		return new DataTable(obj);
 	});
 })

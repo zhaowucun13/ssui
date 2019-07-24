@@ -124,15 +124,15 @@ ss.set(function(out){
                                 txt: 'carousel',
                             },
                             {
-                                leader: 'Collapse 折叠面板',
-                                txt: 'collapse',
+                                leader: 'SelTool 简易版选择工具',
+                                txt: 'selTool',
                             },
                             {
                                 leader: 'Code 代码装饰器',
                                 txt: 'code',
                             },
                             {
-                                leader: 'Api 简单列表展示',
+                                leader: 'Api 列表展示',
                                 txt: 'api',
                             }
                         ]

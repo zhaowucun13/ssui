@@ -14,7 +14,7 @@ ss.set(function(out){
             self.lg_pfWrapFn();//数据首字母库
             self['scope']['defaultArr'] = obj.defaultArr ? self.lg_transNumFn(obj.defaultArr) : [];//默认项(同时为选中容器)
             self['scope']['curPage'] = 1;//当前页数
-            self['scope']['pageSize'] = obj.pageSize || 9;
+            self['scope']['pageSize'] = obj.pageSize;
             self.rd_layout();//布局
             self.lg_dpDataByPage();//分页处理数据
             self.rd_renderItem();//渲染各项
@@ -23,7 +23,7 @@ ss.set(function(out){
         //整体布局
         rd_layout:function(){
             var self = this,obj = self.sourceObj;
-            ss.crtDom('div','selUserWrap','',obj.appendTo)
+            ss.crtDom('div','selUserWrap','',obj.el)
             .appendDom(function(dom){
                 //检索条
                 var searchInput = ss.crtDom('input','searchInput','',dom,{
@@ -164,7 +164,7 @@ ss.set(function(out){
                         }
                     ]);
                     //是否满足选中资格
-                    self['scope']['defaultArr'].indexOf(endArr[a]['id'])!=-1
+                    self['scope']['defaultArr'].indexOf(Number(endArr[a]['id']))!=-1
                     &&(
                         ss.mdfCss(curLi,[
                             'color','#ffffff','backgroundColor','#39b54a '
@@ -194,7 +194,7 @@ ss.set(function(out){
         //更新当前渲染数据情况
         rd_updateCurData:function(){
             var self = this,obj = self.sourceObj;
-            var pageSize = Number(self['scope']['pageSize']),
+            var pageSize = Number(self['scope']['pageSize']) || 21,
             pfWrap = self.scope['pfWrap'],
             curPage = self.scope.curPage;
             var endArr = pfWrap.slice(pageSize*(curPage-1),pageSize*(curPage));

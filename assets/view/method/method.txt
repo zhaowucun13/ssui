@@ -1,23 +1,61 @@
-<code id="ss_use_first">
-	----
-  ├─css  //css目录
-  ├─images  //图片资源目录（包括ico等文件）
-  ├─incoming  //第三方资源引入目录
-  ├─modules  //ssui依赖的组件库（包括主文件ssui.js）
-  │  ├─ajax
-  │  ├─api
-  │  ├─code
-  │  ├─layout
-  │  ├─router
-  │  └─ssui.js
-  ├─private  //项目私有文件
-  │  ├─menuData.js //依赖菜单
-  │  └─app.js //项目启动配置入口
-  ├─view  //项目各页面
-  │  └─code //强制：命名与hash值一致
-  │     ├─code.hmtl //路由跳转，默认加载
-  │     ├─code.js //路由跳转，默认加载
-  │     └─code.txt //配合code模块使用默认命名
-  └─index.html  //文件主html
-----
+<code id="ss_method_config">
+  ss.config({
+    //私有模块(定义的模块)
+    private: {
+      'menuData': '../private/menuData.js',
+      'ssuiLayout': '../private/ssuiLayout.js',
+    },
+    //引入模块
+    incoming: {
+      jquery: '../incoming/jquery-3.3.1.min.js',
+    }
+  })
+</code>
+
+<code id="ss_method_use">
+ss.use(
+	//依赖的js模块
+	[
+		'menuData','docNavMenu',"jquery",'router', 'ssuiLayout'
+	],
+	function() {
+		//布局
+		ss.ssuiLayout.render();
+		//路由
+		ss.router({
+			defaultHash: 'loading'
+		});
+		//菜单
+		ss.docNavMenu({
+			data: ss.menuData,
+			el: ss.getDom('#ly_aside')
+		}); 
+})
+//提前加载
+.load([])
+</code>
+
+<code id="ss_method_crtDom">
+  //创建dom元素方法
+  ss.crtDom(
+    '',  //类型（div、span、...）
+    '',  //class类名
+    '',  //文本
+    dom,  //追加到的父级dom
+    // 样式和属性
+    {
+      cn:[],  //样式名称
+      cv:[],  //样式值
+      an:[],  //属性名称
+      av:[]   //属性值
+    },
+    //  绑定的事件
+    [
+      'click',function(dom, e){
+        //  dom: 当前创建的dom对象
+        //  e  : 事件对象 
+        code...  
+      }
+    ]
+  )
 </code>

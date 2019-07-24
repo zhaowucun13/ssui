@@ -4,7 +4,7 @@
  @License：MIT
  */
 ss.set(function(out){
-    function selectivity(obj){
+    function Selectivity(obj){
         this.version = '1.0.0';//版本号
         this.sourceObj = obj;
         this.domWrap = {};//存储布局模块的dom元素
@@ -12,9 +12,9 @@ ss.set(function(out){
         this.layoutFnWrap = {};//存储布局_方法/实例_容器
         this.init();//初始化
     };
-    selectivity.prototype = {
+    Selectivity.prototype = {
         //构造函数
-        constructor:selectivity,
+        constructor:Selectivity,
         //初始化
         init : function(){
             this.lg_pinyin_dict_firstletter();//首字母处理函数加载
@@ -469,5 +469,5 @@ ss.set(function(out){
             },
         }
     };
-    out('dtVagueSle',selectivity);
+    out('dtVagueSle',Selectivity);
 })

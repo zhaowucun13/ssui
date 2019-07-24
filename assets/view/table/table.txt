@@ -1,0 +1,224 @@
+<code id="ss_table">
+		//数据表格
+	var self = ss.dataTable({ //64,369
+		appendTo: $('#dataCon_cus')[0], //追加元素
+		//数据选项
+		dataOption: {
+			listUrl: commonUrl + '/admin/TUser/queryByPageInfo.action', //请求Url
+			type: 'post', //默认post请求
+			dataType: "json",
+			contentType: "application/json",
+			data: JSON.stringify({}),
+			//pageSize:5,//没值时，则默认是根据屏幕高度判断，保证一页
+		},
+		//搜索栏选项
+		searchOption: [
+			{
+				name: '用户名称',
+				txt: 'userName',
+				type: 'txt',
+				width: '120px'
+			},
+			{
+				name: '用户类型',
+				txt: 'userType',
+				type: 'select',
+				data:{
+					url:commonUrl + '/common/TDictionaries/getDictionariesByKey.action',
+					dataType:'json',
+					data:{
+						dickey:'user_type',
+					},
+					rely: {
+						name:"dicname",
+						code:"dicvalue" 
+					},
+					digitalModel: {
+						data: {
+							location: ['data']
+						}
+					}
+				},
+				width: '120px'
+			},
+		],
+		//搜索栏额外按钮
+		searchBtn: {
+			//默认
+			add: {
+				name: '新建+',
+				colType: 'add',
+				dataType: 'json',
+				url: commonUrl + '/admin/TUser/addEntity.action',
+				items: {
+					userName: {
+						name: '用户名称',
+						type: 'txt', 
+						verify:true
+					},
+					loginid: {
+						name: '登陆ID',
+						type: 'txt', 
+						verify:true
+					},
+					userType: {
+						name: '用户类型',
+						type: 'select',
+						data:{
+							url:commonUrl + '/common/TDictionaries/getDictionariesByKey.action',
+							dataType:'json',
+							data:{
+								dickey:'user_type',
+							},
+							rely: {
+								name:"dicname",
+								code:"dicvalue" 
+							},
+							digitalModel: {
+								data: {
+									location: ['data']
+								}
+							}
+						},
+						verify:true
+					},
+					phone: {
+						name: '联系方式',
+						type: 'num', 
+						verify:true
+					},
+					email: {
+						name: '邮箱地址',
+						type: 'txt', 
+						verify:true
+					},
+					remark: {
+						name: '备注',
+						type: 'area'
+					},
+				}
+
+			}
+		},
+		//表格内容 
+		table: {
+			//各选项
+			options: {
+				closeInterlace: true,
+//				dpWPer:'140%',
+				dpWith: {
+					'userName':5, 'loginid':5, 'userType':5, 'phone':5, 'email':5,
+					'createTime':5,'createPerson':5,'remark':5
+				},
+				showTitle:[	
+					'userName', 'loginid', 'userType', 'phone', 'email',
+					'createTime','createPerson','remark'
+				],
+				isChangeTime: ['createTime'], //是否进行时间戳转时间
+//				//动态别名转换
+				urlData:{ 
+					userType:{
+						url:commonUrl + '/common/TDictionaries/getDictionariesByKey.action',
+						type: 'post', //默认post请求
+						dataType: "json",
+						contentType: "application/json",
+						data: {
+							dickey:'user_type', 
+						},
+						rely:{
+							name:"dicname",
+							code:"dicvalue" 
+						},
+						digitalModel:{
+							data:{
+								location:['data']
+							}
+						}
+					},
+				}
+			},
+			tlName: [
+				'用户名称', '登录ID', '用户类型', '联系方式', '邮箱地址',
+				'创建时间','创建人','备注'
+			], //表头名字
+			tlTxt: [
+				'userName', 'loginid', 'userType', 'phone', 'email',
+				'createTime','createPerson','remark'
+			], //表头字段
+			//操作项
+			operation: [
+				//编辑和删除为默认，其它按钮需txt
+				{
+					name: '编辑',
+					url: commonUrl + '/admin/TUser/editEntity.action',
+					dataType: 'json',
+					items: {
+						userName: {
+							name: '用户名称',
+							type: 'txt', 
+							verify:true
+						},
+						loginid: {
+							name: '登陆ID',
+							type: 'txt', 
+							verify:true
+						},
+						userType: {
+							name: '用户类型',
+							type: 'select',
+							data:{
+								url:commonUrl + '/common/TDictionaries/getDictionariesByKey.action',
+								dataType:'json',
+								data:{
+									dickey:'user_type',
+								},
+								rely: {
+									name:"dicname",
+									code:"dicvalue" 
+								},
+								digitalModel: {
+									data: {
+										location: ['data']
+									}
+								}
+							},
+							verify:true
+						},
+						phone: {
+							name: '联系方式',
+							type: 'num', 
+							verify:true
+						},
+						email: {
+							name: '邮箱地址',
+							type: 'txt', 
+							verify:true
+						},
+						remark: {
+							name: '备注',
+							type: 'area'
+						},
+					},
+					data: {
+						uuid: ''
+					},
+				},
+				{
+					name: '删除',
+					colType: 'del',
+					dataType: 'json',
+					url: commonUrl + '/admin/TUser/deleteEnttiybyUuid.action',
+					data: {
+						uuid: ''
+					}
+				}
+			],
+
+		},
+		//分页
+		pageOption: {
+			//各选项
+		}
+	});
+
+</code>

@@ -1,0 +1,25 @@
+<code id="code">
+ss.set(['selTool'],function(out){
+
+	ss.selTool({
+
+		el:dom,  //追加元素
+
+		data:[
+			{name:'混世魔王',id:'1'},{name:'牛魔王',id:'2'},{name:'蛟魔王',id:'3'},
+			{name:'鹏魔王',id:'4'},{name:'猕猴王',id:'5'},{name:'禺绒王',id:'6'},
+			{name:'寅将军',id:'7'},{name:'熊山君',id:'8'},{name:'特处士',id:'9'},
+			{name:'黑风怪',id:'10'},{name:'白骨精',id:'11'},{name:'黄袍怪',id:'12'},
+			{name:'金角大王',id:'13'},{name:'银角大王',id:'14'},{name:'精细鬼',id:'15'},
+			{name:'九尾狐狸',id:'16'},{name:'狮猁怪',id:'17'},{name:'圣婴大王',id:'18'},
+			{name:'鼍龙',id:'19'},{name:'虎力大仙',id:'20'},{name:'鹿力大仙',id:'21'},
+			{name:'羊力大仙',id:'22'},{name:'鲤鱼怪',id:'23'},{name:'兕怪',id:'24'},
+		],  //依赖数据
+
+		defaultArr:[1,2], //默认选中
+
+		pageSize:21,  //每页数量
+	})
+	
+})
+</code>

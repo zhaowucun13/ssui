@@ -16,7 +16,7 @@
 
 
 
-<img src="https://raw.githubusercontent.com/zhaowucun13/ssui/master/assets/images/doc.png" alt="layui" width="30">查看文档 --> [传送门](http://47.107.154.57) 
+<img style="vertical-align:middle;margin-bottom:3px;" src="https://raw.githubusercontent.com/zhaowucun13/ssui/master/assets/images/doc.png" alt="layui" width="30">查看文档 --> [传送门](http://47.107.154.57) 
 
 1、项目预览
 

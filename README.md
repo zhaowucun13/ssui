@@ -15,7 +15,10 @@
 <div style="margin-top:50px;"></div>
 
 
-##1、下载项目 --> [GitHub](https://github.com/zhaowucun13/ssui#) 
+
+<img src="https://raw.githubusercontent.com/zhaowucun13/ssui/master/assets/images/gh_ssui_logo.jpg" alt="layui" width="30">查看文档 --> [传送门](http://47.107.154.57) 
+
+1、项目预览
 
 * 项目各文件路径的介绍，帮助你更好地了解ssui
 
@@ -46,7 +49,7 @@
 
 <div style="margin-top:30px;"></div>
 
-##2、模块相关 
+2、模块相关 
 
 * 与CMD规范的模块体系类似，ssui里面的每个js都要以模块的方式存在，通过简单的set|out方法来定义与抛出，然后在app.js中配置路径
 
@@ -85,7 +88,7 @@ ss.config({
 
 <div style="margin-top:30px;"></div>
 
-##3、核心方法
+3、核心方法
 
 <p style="background:#eee;padding:10px;padding-left:25px;">创建dom元素</p>
 

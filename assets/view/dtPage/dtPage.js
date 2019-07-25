@@ -1,4 +1,4 @@
-ss.set(['code','api','loading'],function(out){
+ss.set(['code','api','dtPage'],function(out){
 
 	ss.code({
 		el:ss.getDom('#ss_loading_example'),
@@ -6,10 +6,9 @@ ss.set(['code','api','loading'],function(out){
 		title:'基本代码',
 		explain:'缓冲动画loading，一般配合请求接口使用',
 		example:function(dom){
-			dom.style.height = '100px';
-			ss.loading.show({
-				el:dom
-			})
+			dom.style.height = '300px';
+			
+
 		}
 	})
 

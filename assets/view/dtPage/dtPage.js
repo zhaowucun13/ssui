@@ -16,11 +16,14 @@ ss.set(['code','api','dtPage'],function(out){
 		}
 	})
 
+
+
+
 	ss.api({
 		el:ss.getDom('#ss_dtPage_api'),
 		list:[
 			{attr:'el',explain:'分页挂载的dom元素',type:'dom对象',defaultVal:'无，必填'},
-			{attr:'page',explain:'当前页数',type:'Number数字',defaultVal:'无，必填'},
+			{attr:'page',explain:'当前选中页数',type:'Number数字',defaultVal:'无，必填'},
 			{attr:'totalPage',explain:'总页数，一般由接口返回',type:'Number数字',defaultVal:'无，必填'},
 		],
 		title:'API',
